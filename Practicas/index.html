@@ -4,23 +4,128 @@
   <meta charset="UTF-8">
   <title>Tabla de Elementos Químicos</title>
   <style>
+  /* ===== Variables y modo oscuro ===== */
+  :root {
+    --bg: #e8eef5;
+    --bg-card: rgba(255, 255, 255, 0.55);
+    --bg-glass: rgba(255, 255, 255, 0.3);
+    --border-glass: rgba(255, 255, 255, 0.4);
+    --text: #222;
+    --primary: #0078ff;
+    --primary-dark: #005fcc;
+    --shadow: rgba(0, 0, 0, 0.15);
+    --radius: 16px;
+    --blur: 12px;
+    --transition: 0.25s ease;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #0f1218;
+      --bg-card: rgba(255, 255, 255, 0.08);
+      --bg-glass: rgba(255, 255, 255, 0.05);
+      --border-glass: rgba(255, 255, 255, 0.15);
+      --text: #e8e8e8;
+      --primary: #4da3ff;
+      --primary-dark: #2b7dd9;
+      --shadow: rgba(0, 0, 0, 0.6);
+    }
+  }
+
+  body {
+    font-family: "Inter", "Segoe UI", sans-serif;
+    background: var(--bg);
+    padding: 40px;
+    color: var(--text);
+    transition: background 0.3s ease, color 0.3s ease;
+  }
+
+  table {
+    width: 80%;
+    margin: auto;
+    border-collapse: collapse;
+    background: var(--bg-glass);
+    backdrop-filter: blur(var(--blur));
+    border-radius: var(--radius);
+    overflow: hidden;
+    border: 1px solid var(--border-glass);
+    box-shadow: 0 8px 25px var(--shadow);
+    transform: translateY(0);
+    transition: transform 0.4s ease, box-shadow 0.4s ease;
+  }
+
+  table:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 12px 30px var(--shadow);
+  }
+
+  thead {
+    background: linear-gradient(to right, var(--primary), var(--primary-dark));
+    color: white;
+  }
+
+  th {
+    padding: 18px;
+    font-size: 1.15rem;
+    letter-spacing: 0.4px;
+  }
+
+  td {
+    padding: 15px 10px;
+    font-size: 1.05rem;
+    text-align: center;
+    border-bottom: 1px solid rgba(255,255,255,0.15);
+    transition: background 0.2s ease;
+  }
+
+  tr:last-child td {
+    border-bottom: none;
+  }
+
+  tbody tr:hover {
+    background: rgba(255,255,255,0.15);
+  }
+
+  button {
+    padding: 10px 16px;
+    margin: 6px;
+    background: var(--primary);
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    color: #fff;
+    font-weight: 600;
+    letter-spacing: 0.4px;
+    box-shadow: 0 4px 12px rgba(0,123,255,0.3);
+    transition: transform var(--transition), box-shadow var(--transition), background var(--transition);
+  }
+
+  button:hover {
+    background: var(--primary-dark);
+    transform: translateY(-3px) scale(1.03);
+    box-shadow: 0 6px 18px rgba(0,123,255,0.4);
+  }
+
+  button:active {
+    transform: scale(0.97);
+  }
+
+  @media (max-width: 700px) {
     table {
-      border-collapse: collapse;
-      width: 60%;
-      margin: 20px auto;
-      font-family: Arial, sans-serif;
+      width: 95%;
     }
+
     th, td {
-      border: 1px solid #999;
-      padding: 10px;
-      text-align: center;
+      font-size: 0.9rem;
+      padding: 12px;
     }
+
     button {
-      padding: 6px 12px;
-      margin: 4px;
-      cursor: pointer;
+      padding: 8px 12px;
+      font-size: 0.85rem;
     }
-  </style>
+  }
+</style>
 </head>
 <body>
 
@@ -79,3 +184,4 @@
       document.getElementById('numero').textContent = elemento.numero;
     }
   </script>
+
